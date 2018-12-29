@@ -86,6 +86,7 @@ class TestGenerator: Controller() {
         // parse text here
         val scriptSource = readFiles(file)?.toScriptSource()
         if (scriptSource != null) {
+            reconfigureScriptEnvironment(file)
             val result = BasicJvmScriptingHost().eval(scriptSource, scriptConfiguration, evaluationConfig)
             val name = file.name
             for (report in result.reports) {
