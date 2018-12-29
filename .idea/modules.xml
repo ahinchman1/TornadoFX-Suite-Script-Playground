@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/tornadofx-automated-testing.iml" filepath="$PROJECT_DIR$/.idea/modules/tornadofx-automated-testing.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/tornadofx-automated-testing_buildSrc.iml" filepath="$PROJECT_DIR$/.idea/modules/tornadofx-automated-testing_buildSrc.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/tornadofx-automated-testing_buildSrc_main.iml" filepath="$PROJECT_DIR$/.idea/modules/tornadofx-automated-testing_buildSrc_main.iml" group="tornadofx-automated-testing_buildSrc" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/tornadofx-automated-testing_buildSrc_test.iml" filepath="$PROJECT_DIR$/.idea/modules/tornadofx-automated-testing_buildSrc_test.iml" group="tornadofx-automated-testing_buildSrc" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/tornadofx-automated-testing_main.iml" filepath="$PROJECT_DIR$/.idea/modules/tornadofx-automated-testing_main.iml" group="tornadofx-automated-testing" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/tornadofx-automated-testing_test.iml" filepath="$PROJECT_DIR$/.idea/modules/tornadofx-automated-testing_test.iml" group="tornadofx-automated-testing" />
+    </modules>
+  </component>
+</project>

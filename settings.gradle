@@ -1,0 +1,18 @@
+pluginManagement {
+    repositories {
+        maven {
+            url = "https://dl.bintray.com/kotlin/kotlin-eap/"
+            name = "Kotlin EAP"
+        }
+        maven {
+            url = "https://kotlin.bintray.com/kotlinx"
+            name = "kotlinx"
+        }
+        maven {
+            url = "https://oss.sonatype.org/content/repositories/snapshots/"
+        }
+        mavenCentral()
+        gradlePluginPortal()
+    }
+}
+rootProject.name = "tornadofx-automated-testing"
