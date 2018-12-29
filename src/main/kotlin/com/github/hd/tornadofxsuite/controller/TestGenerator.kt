@@ -86,7 +86,6 @@ class TestGenerator: Controller() {
         // parse text here
         val scriptSource = readFiles(file)?.toScriptSource()
         if (scriptSource != null) {
-            reconfigureScriptEnvironment(file)
             val result = BasicJvmScriptingHost().eval(scriptSource, scriptConfiguration, evaluationConfig)
             val name = file.name
             for (report in result.reports) {
@@ -102,42 +101,6 @@ class TestGenerator: Controller() {
                 report.exception?.printStackTrace()
             }
             println(result)
-        }
-    }
-
-    private fun reconfigureScriptEnvironment(file: File) {
-        val fileText = "package script\n" +
-                "import java.io.File\n" +
-                "import kotlin.script.experimental.annotations.KotlinScript\n\n" +
-
-                "@KotlinScript(\n" +
-                        "displayName = \"${file.nameWithoutExtension}\",\n" +
-                        "fileExtension = \"${file.name}\",\n" +
-                        "compilationConfiguration = ScriptEnvironmentConfiguration::class\n" +
-                ")\n" +
-                "open class ScriptEnvironment(val directory: File) {\n" +
-                    "override fun toString() = \"ScriptEnvironment(directory = \$directory) is a ${this::class.qualifiedName}\"" +
-                "}"
-
-        // write string to document
-        File("src/main/kotlin/com/github/hd/tornadofxsuite/script/ScriptEnvironment.kt").printWriter().use {out -> out.println(fileText)}
-
-        val scriptReader = Files.newBufferedReader(Paths.get("src/main/kotlin/com/github/hd/tornadofxsuite/script/ScriptEnvironment.kt"))
-        val loadedObj: ScriptEnvironment = KtsObjectLoader().load(scriptReader)
-
-        // overwrite previous configuration with new loaded configuration
-        scriptConfiguration = createJvmCompilationConfigurationFromTemplate<ScriptEnvironment> {
-            jvm {
-                dependenciesFromCurrentContext(wholeClasspath = true)
-
-                // you need to specify the jdk location, should usually be the same as the JAVA_HOME env variable anyway
-                val JDK_HOME = System.getenv("JAVA_HOME")
-                        ?: throw IllegalStateException("please set JAVA_HOME to the installed jdk")
-                javaHome(File(JDK_HOME))
-            }
-
-            // once more for good measure
-            compilerOptions.append("-jvm-target", "1.8")
         }
     }
 
