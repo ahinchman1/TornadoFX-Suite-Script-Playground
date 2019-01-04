@@ -1,4 +1,4 @@
-package com.github.hd.tornadofxsuite.controller
+package script
 
 import java.util.ArrayList
 import kotlin.reflect.full.companionObject

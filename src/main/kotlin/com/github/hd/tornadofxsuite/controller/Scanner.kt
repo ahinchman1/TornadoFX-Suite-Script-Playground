@@ -3,6 +3,7 @@ package com.github.hd.tornadofxsuite.controller
 import kastree.ast.Node
 import kastree.ast.psi.Converter
 import kastree.ast.psi.Parser
+import script.ClassBreakDown
 import tornadofx.*
 
 class Scanner: Controller() {

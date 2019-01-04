@@ -48,7 +48,7 @@ class MainView : View() {
             }
 
             button("Upload your project.") {
-                setOnAction {
+                setOnAction { it ->
                     overlay.fade(Duration.millis(2000.0), .5)
                     chooseDirectory {
                         title = "Choose a TornadoFX Project"

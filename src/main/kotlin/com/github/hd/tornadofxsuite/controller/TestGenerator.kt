@@ -2,11 +2,7 @@ package com.github.hd.tornadofxsuite.controller
 
 import com.github.hd.tornadofxsuite.view.Dialog
 import com.github.hd.tornadofxsuite.view.MainView
-import de.swirtz.ktsrunner.objectloader.KtsObjectLoader
 import javafx.util.Duration
-import kastree.ast.Node
-import kastree.ast.psi.Converter
-import kastree.ast.psi.Parser
 import script.ScriptEnvironment
 import tornadofx.*
 import java.io.BufferedReader
@@ -25,7 +21,6 @@ import kotlin.script.experimental.jvmhost.createJvmCompilationConfigurationFromT
 class TestGenerator: Controller() {
     val kotlinFiles = ArrayList<File>()
     private val view: MainView by inject()
-    private val scanner: Scanner by inject()
 
     var scriptConfiguration = createJvmCompilationConfigurationFromTemplate<ScriptEnvironment> {
         jvm {
@@ -37,8 +32,11 @@ class TestGenerator: Controller() {
             javaHome(File(JDK_HOME))
         }
 
-        // once more for good measure
         compilerOptions.append("-jvm-target", "1.8")
+    }
+
+    private val evaluationConfig = ScriptEvaluationConfiguration {
+        constructorArgs.append(File(".").absoluteFile)
     }
 
     fun walk(path: String) {
@@ -80,9 +78,6 @@ class TestGenerator: Controller() {
 
     private fun fileOutputRead(path: Path) {
         val file = File(path.toUri())
-        val evaluationConfig = ScriptEvaluationConfiguration {
-            constructorArgs.append(file)
-        }
         // parse text here
         val scriptSource = readFiles(file)?.toScriptSource()
         if (scriptSource != null) {
@@ -105,8 +100,5 @@ class TestGenerator: Controller() {
     }
 
     // class name, methods,
-    private fun consoleLog() {
-        // print and format classes
-        //
-    }
+    private fun consoleLog() {}
 }
